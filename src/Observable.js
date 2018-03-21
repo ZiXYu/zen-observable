@@ -87,7 +87,7 @@ function flushSubscription(subscription) {
   let queue = subscription._queue;
   subscription._queue = undefined;
   subscription._state = 'ready';
-  for (let i = 0; i < queue.length; ++i) {
+  for (let i = 0; i < (queue || []).length; ++i) {
     notifySubscription(subscription, queue[i].type, queue[i].value);
     if (subscription._state === 'closed')
       break;
